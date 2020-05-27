@@ -1,6 +1,7 @@
 language: node_js
 arch:
   - arm64
+  - amd64
 os: linux
 node_js:
   - lts/*
@@ -11,8 +12,9 @@ services:
 script: echo "iot_repo_backend test and deploy against node $(node -v)..."
 
 env:
-    global:
-        - DOCKER_HUB_USERNAME=eikiri
+  global:
+    - secure: "v3r7bRTdWQCrRDXm1gMAZW+YF9nYl2C4hakGtUfh8Qa8pH+OKG9rkPqEnW5c2IgLO9qln3Y73aTkbExvY4iEfhy/mPy2ml1HQrLkq1WlW6blKceQTzDaipT37wCAR8KEbSOcLs9iviLcS17fF6vY3iRpw1Dx5zEfULEpuvuyoLbh3m3CgTQZv5sfq0uTP8Fiy5ejK0SlzJjO9833DY4/LCu74aO1NmdIspgvJA1zqliyIcyqv8eR3uxSUzMSn6yTajqpGBWEm8y9v6pEe/4mFLAceQhVzPP/CJuq5krQkNjgLN0rzx4ZLR5S4vdWWEdHcmAajCw+Tj16tY4gISrYd+k3n1nbblramb8fh+ua0L6fuQ5wiGGm2kDAL/zW+wFmU6kiBSKaZ6hl/Kf/pONMqDANwtxgV1ph4a4g6dvdSBb3OGBWtryR9bHPOD3Geab+b5usjKdPr3azLvUR25FSgU8aeDNo6nxwnfUdAiEahvhF1pQvomkesmXqQpgpXLiOjfMxsJwcHKOuX7tu+4DFzPUw94YMt14uRwfgBIkLiiCZVpi9sLWYP549ehnHvKfRagiGxxjdxteIjjqcEJ2j9icwdbym+vb1b/yMkyoWwSwSh9sXv8T0Aqw8/YoKpHAMji84ZHgkd1ltZs8/pm07thTrCWR34NBI4l4rGAxyKvs="
+    - DOCKER_HUB_USERNAME=eikiri
 
 branches:
   only:
