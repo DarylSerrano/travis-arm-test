@@ -21,9 +21,7 @@ branches:
     - /.*/
 
 jobs:
-    stage: 'test'
-    script:
-    - echo "Hello"
+  include:
     stage: 'deploy app'
     if: branch = master
     install:
