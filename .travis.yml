@@ -21,30 +21,27 @@ branches:
     - /.*/
 
 jobs:
-    - stage: 'test'
-      script:
-      - echo "Hello"
-    - stage: 'deploy app'
-      if: branch = master
-      arch: 
-        - arm64
-        - amd64
-      install:
-      - npm ci
-      before_script:
-      - uname -a
-      - npm install -g gulp-cli
-      script:
-      - npm run build:app
-      before_deploy:
-      - docker build  -f ./Docker/Dockerfile -t "eikiri/test-arm:${TRAVIS_BRANCH}_${TRAVIS_COMMIT}" -t "eikiri/test-arm:latest" .
-      - docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD >/dev/null 2>&1
-      deploy:
-        provider: script
-        script: bash docker-push.sh
-        on:
-            all_branches: true
-            condition: $TRAVIS_BRANCH =~ ^(staging|master)$
+    stage: 'test'
+    script:
+    - echo "Hello"
+    stage: 'deploy app'
+    if: branch = master
+    install:
+    - npm ci
+    before_script:
+    - uname -a
+    - npm install -g gulp-cli
+    script:
+    - npm run build:app
+    before_deploy:
+    - docker build  -f ./Docker/Dockerfile -t "eikiri/test-arm:${TRAVIS_BRANCH}_${TRAVIS_COMMIT}" -t "eikiri/test-arm:latest" .
+    - docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD >/dev/null 2>&1
+    deploy:
+      provider: script
+      script: bash docker-push.sh
+      on:
+          all_branches: true
+          condition: $TRAVIS_BRANCH =~ ^(staging|master)$
 cache:
   directories:
     - "$HOME/.npm"
